@@ -15,3 +15,19 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+
+    result = {}
+    with open("files/input/data.csv", "r") as data:
+        for line in data:
+            column = line.split()
+            letter = column[0]
+            values = column[4].split(",")
+            for value in values:
+                number = int(value.split(":")[1])
+                if letter in result:
+                    result[letter] += number
+                else:
+                    result[letter] = number
+    
+    result = dict(sorted(result.items()))
+    return result

@@ -15,3 +15,15 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+
+    cont = {}
+    with open("files/input/data.csv", "r") as data:
+        for line in data:
+            letter = line.split()[0]
+            if letter in cont:
+                cont[letter] += 1
+            else:
+                cont[letter] = 1
+        
+        result = sorted(cont.items())
+        return result

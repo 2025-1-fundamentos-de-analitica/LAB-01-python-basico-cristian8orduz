@@ -26,3 +26,22 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    cont = {}
+    with open("files/input/data.csv", "r") as data:
+        for line in data:
+            letters = line.split()[4].split(",")
+            for i in letters:
+                letter = i.split(":")[0]
+                number = int(i.split(":")[1])
+                if letter not in cont:
+                    cont[letter] = [number]
+                else:
+                    cont[letter].append(number)
+    
+    result = []
+    for letter in sorted(cont):
+        max_value = max(cont[letter])
+        min_value = min(cont[letter])
+        result.append((letter, min_value, max_value))
+    
+    return result

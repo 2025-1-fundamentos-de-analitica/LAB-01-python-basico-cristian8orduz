@@ -27,3 +27,19 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+
+    cont = {}
+    with open("files/input/data.csv", "r") as data:
+        for line in data:
+            number = int(line.split()[1])
+            letter = line.split()[0]
+            if number not in cont:
+                cont[number] = set()
+            cont[number].add(letter)
+    
+    result = []
+    for number in sorted(cont):
+        ordered_letters = sorted(cont[number])
+        result.append((number, ordered_letters))
+    
+    return result
